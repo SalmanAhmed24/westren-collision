@@ -7,6 +7,7 @@ function ComingSoon() {
         Please be patient our site is under development and will be available
         soon.
       </p>
+      <p className="env-p">this is development environment</p>
     </section>
   );
 }
