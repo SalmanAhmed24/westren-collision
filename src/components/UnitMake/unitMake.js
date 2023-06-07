@@ -16,7 +16,9 @@ function UnitMake({ title }) {
   const handleClose = () => setOpen(false);
   const fetchData = async () => {
     setLoadingFlag(true);
-    const res = await axios.get("http://localhost:9000/api/unitMake");
+    const res = await axios.get(
+      "https://collision-backend.vercel.app/api/unitMake"
+    );
     if (res.data && res.data.error == false) {
       setData(res.data.unitMake);
       setLoadingFlag(false);
@@ -27,7 +29,7 @@ function UnitMake({ title }) {
   const handleAddUnit = async (itemObj) => {
     try {
       const res = await axios.post(
-        "http://localhost:9000/api/unitMake/addUnitMake",
+        "https://collision-backend.vercel.app/api/unitMake/addUnitMake",
         itemObj
       );
       console.log(res);
