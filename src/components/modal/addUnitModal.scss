@@ -1,0 +1,32 @@
+.drawer-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    padding: 20px;
+        label{
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        .inp-cus{
+            font-size: 16px;
+            font-family: 'Poppins';
+            border:none;
+            border-bottom: 2px solid #000;
+        }
+        button{
+            font-size: 18px;
+            background-color: #78A7DA;
+            color: #fff;
+            border: 1px solid #78A7DA;
+            transition: 0.3s ease-in-out;
+            padding: 10px 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-family: 'Poppins';
+                &:hover{
+                    background-color: #fff;
+                    color: #78A7DA;
+                }
+        }
+}

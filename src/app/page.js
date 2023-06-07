@@ -1,4 +1,4 @@
-import ComingSoon from "../../components/comingSoon/coming-soon";
+import ComingSoon from "../components/comingSoon/coming-soon";
 import "../styles/home-sec.scss";
 export default function Home() {
   return (
