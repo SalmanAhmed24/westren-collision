@@ -2,18 +2,36 @@
     margin-top: 20px;
 }
 .unitMake-t{
-    thead{
-        tr{
-            th{
-                font-family: 'Poppins';
-            }
-        }
-    }
     tbody{
         tr{
             td{
-                font-family: 'Poppins';
+                position: relative;
             }
         }
     }
+}
+.dropdown{
+    position: absolute;
+    top:20px;
+    width: 80px;
+    left: -90px;
+    background-color: #ffff;
+    box-shadow: 0 0 15px solid #a2a2a2;
+    border:1px solid #000;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 222;
+        ul{
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+                li{
+                    color:#000;
+                    margin-bottom: 5px;
+                    border-bottom: 1px solid #000;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+        }
 }

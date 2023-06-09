@@ -1,6 +1,6 @@
 import Modal from "@mui/material/Modal";
 import Drawer from "@mui/material/Drawer";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./addUnitModal.scss";
 import { Poppins } from "next/font/google";
 
@@ -8,8 +8,11 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
-function AddUnitModal({ open, handleClose, handleAddUnit }) {
+function EditUnitModal({ open, handleClose, handleEditUnit, item }) {
   const [name, setName] = useState("");
+  useEffect(() => {
+    setName(item.name);
+  }, [open]);
   const handleName = (e) => {
     setName(e.target.value);
   };
@@ -28,12 +31,13 @@ function AddUnitModal({ open, handleClose, handleAddUnit }) {
             type="text"
             onChange={handleName}
             className={poppins.className}
+            value={name}
           />
           <button
             className={poppins.className}
-            onClick={() => handleAddUnit({ name })}
+            onClick={() => handleEditUnit({ name })}
           >
-            Add Unit Make
+            Edit Unit Make
           </button>
         </div>
       </Drawer>
@@ -41,4 +45,4 @@ function AddUnitModal({ open, handleClose, handleAddUnit }) {
   );
 }
 
-export default AddUnitModal;
+export default EditUnitModal;

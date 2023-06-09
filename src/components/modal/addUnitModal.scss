@@ -8,9 +8,8 @@
             font-weight: 600;
             margin-top: 20px;
         }
-        .inp-cus{
+        input{
             font-size: 16px;
-            font-family: 'Poppins';
             border:none;
             border-bottom: 2px solid #000;
         }
@@ -23,7 +22,6 @@
             padding: 10px 10px;
             border-radius: 5px;
             margin-top: 10px;
-            font-family: 'Poppins';
                 &:hover{
                     background-color: #fff;
                     color: #78A7DA;
