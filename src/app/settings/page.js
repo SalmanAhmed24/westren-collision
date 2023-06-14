@@ -2,6 +2,7 @@
 import UnitMake from "@/components/UnitMake/unitMake";
 import "./picklist.scss";
 import React, { useState } from "react";
+import Branch from "@/components/branch/branch";
 function Settings() {
   const [linkVal, setLinkVal] = useState("picklist editor");
   const [innerLink, setInnerLink] = useState(
@@ -32,12 +33,16 @@ function Settings() {
             <p className={innerLink == "Unit Make" ? "activeInnerLink" : ""}>
               Unit Make
             </p>
+            <p className={innerLink == "Branch" ? "activeInnerLink" : ""}>
+              Branch
+            </p>
           </div>
         ) : null}
       </section>
       <section className="contentMain">
         <div className="para">
           {innerLink == "Unit Make" ? <UnitMake title={innerLink} /> : null}
+          {innerLink == "Branch" ? <Branch title={innerLink} /> : null}
         </div>
       </section>
     </main>

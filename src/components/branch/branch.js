@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import "./unitMake.scss";
+import "../UnitMake/unitMake.scss";
 import UnitTable from "../unitMakeTable/table";
 import Image from "next/image";
 import AddUnitModal from "../modal/addUnitModal";
@@ -11,8 +11,8 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
-function UnitMake({ title }) {
-  console.log("this is title", title);
+function Branch({ title }) {
+  console.log("this is title from branch", title);
   const [refreshFlag, setRefreshFlag] = useState(false);
   const [data, setData] = useState([]);
   const [loadingFlag, setLoadingFlag] = useState(false);
@@ -26,9 +26,9 @@ function UnitMake({ title }) {
   };
   const fetchData = async () => {
     setLoadingFlag(true);
-    const res = await axios.get(`${apiRouth.prodPath}/api/unitMake`);
+    const res = await axios.get(`${apiRouth.prodPath}/api/branch`);
     if (res.data && res.data.error == false) {
-      setData(res.data.unitMake);
+      setData(res.data.branch);
       setLoadingFlag(false);
     } else {
       setLoadingFlag(false);
@@ -37,7 +37,7 @@ function UnitMake({ title }) {
   const handleAddUnit = async (itemObj) => {
     try {
       const res = await axios.post(
-        `${apiRouth.prodPath}/api/unitMake/addUnitMake`,
+        `${apiRouth.prodPath}/api/branch/addBranch`,
         itemObj
       );
       console.log(res);
@@ -86,4 +86,4 @@ function UnitMake({ title }) {
   );
 }
 
-export default UnitMake;
+export default Branch;

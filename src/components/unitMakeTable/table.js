@@ -17,7 +17,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
-function UnitTable({ data, refreshUnitData }) {
+function UnitTable({ data, refreshUnitData, title }) {
   const [dropdown, setDropdown] = useState(false);
   const [currentId, setCurrentId] = useState(false);
   const [open, setOpen] = useState(false);
@@ -41,7 +41,15 @@ function UnitTable({ data, refreshUnitData }) {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`${apiRouth.prodPath}/api/unitMake/${id}`)
+          .delete(
+            `${apiRouth.prodPath}/api/${
+              title == "Unit Make"
+                ? "unitMake"
+                : title == "Branch"
+                ? "branch"
+                : ""
+            }/${id}`
+          )
           .then((res) => {
             console.log(res);
             refreshUnitData();
@@ -51,9 +59,12 @@ function UnitTable({ data, refreshUnitData }) {
     });
   };
   const handleEditUnit = async (itemObj) => {
+    console.log(title);
     try {
       const res = await axios.patch(
-        `${apiRouth.prodPath}/api/unitMake/${currentId}`,
+        `${apiRouth.prodPath}/api/${
+          title == "Unit Make" ? "unitMake" : title == "Branch" ? "branch" : ""
+        }/${currentId}`,
         itemObj
       );
       console.log(res);
