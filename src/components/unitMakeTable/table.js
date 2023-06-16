@@ -47,6 +47,16 @@ function UnitTable({ data, refreshUnitData, title }) {
                 ? "unitMake"
                 : title == "Branch"
                 ? "branch"
+                : title == "Unit Location"
+                ? "unitLoc"
+                : title == "Unit Model"
+                ? "unitMod"
+                : title == "Unit Job Urgency"
+                ? "unitJob"
+                : title == "Unit Year"
+                ? "unitYear"
+                : title == "Unit Type"
+                ? "unitType"
                 : ""
             }/${id}`
           )
@@ -63,7 +73,21 @@ function UnitTable({ data, refreshUnitData, title }) {
     try {
       const res = await axios.patch(
         `${apiRouth.prodPath}/api/${
-          title == "Unit Make" ? "unitMake" : title == "Branch" ? "branch" : ""
+          title == "Unit Make"
+            ? "unitMake"
+            : title == "Branch"
+            ? "branch"
+            : title == "Unit Location"
+            ? "unitLoc"
+            : title == "Unit Model"
+            ? "unitMod"
+            : title == "Unit Job Urgency"
+            ? "unitJob"
+            : title == "Unit Year"
+            ? "unitYear"
+            : title == "Unit Type"
+            ? "unitType"
+            : ""
         }/${currentId}`,
         itemObj
       );

@@ -3,6 +3,11 @@ import UnitMake from "@/components/UnitMake/unitMake";
 import "./picklist.scss";
 import React, { useState } from "react";
 import Branch from "@/components/branch/branch";
+import UnitLocation from "@/components/unitLocation/unitLocation";
+import UnitModel from "@/components/unitModel";
+import UnitJob from "@/components/unitJob";
+import UnitYear from "@/components/unitYear";
+import UnitType from "@/components/unitType";
 function Settings() {
   const [linkVal, setLinkVal] = useState("picklist editor");
   const [innerLink, setInnerLink] = useState(
@@ -36,6 +41,27 @@ function Settings() {
             <p className={innerLink == "Branch" ? "activeInnerLink" : ""}>
               Branch
             </p>
+            <p
+              className={innerLink == "Unit Location" ? "activeInnerLink" : ""}
+            >
+              Unit Location
+            </p>
+            <p className={innerLink == "Unit Model" ? "activeInnerLink" : ""}>
+              Unit Model
+            </p>
+            <p
+              className={
+                innerLink == "Unit Job Urgency" ? "activeInnerLink" : ""
+              }
+            >
+              Unit Job Urgency
+            </p>
+            <p className={innerLink == "Unit Year" ? "activeInnerLink" : ""}>
+              Unit Year
+            </p>
+            <p className={innerLink == "Unit Type" ? "activeInnerLink" : ""}>
+              Unit Type
+            </p>
           </div>
         ) : null}
       </section>
@@ -43,6 +69,15 @@ function Settings() {
         <div className="para">
           {innerLink == "Unit Make" ? <UnitMake title={innerLink} /> : null}
           {innerLink == "Branch" ? <Branch title={innerLink} /> : null}
+          {innerLink == "Unit Location" ? (
+            <UnitLocation title={innerLink} />
+          ) : null}
+          {innerLink == "Unit Model" ? <UnitModel title={innerLink} /> : null}
+          {innerLink == "Unit Job Urgency" ? (
+            <UnitJob title={innerLink} />
+          ) : null}
+          {innerLink == "Unit Year" ? <UnitYear title={innerLink} /> : null}
+          {innerLink == "Unit Type" ? <UnitType title={innerLink} /> : null}
         </div>
       </section>
     </main>
