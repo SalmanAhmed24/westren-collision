@@ -121,31 +121,65 @@ function UnitTable({ data, refreshUnitData, title }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((item, index) => (
-            <TableRow
-              key={`${item.name}${index}`}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell className={poppins.className}>{item.name}</TableCell>
-              <TableCell className={poppins.className}>
-                <Image
-                  onClick={() => handleToggleDrop(item.id)}
-                  src={"/images/edit.png"}
-                  width={24}
-                  height={24}
-                  alt="Edit"
-                />
-                {dropdown && currentId == item.id ? (
-                  <div className="dropdown">
-                    <ul className={poppins.className}>
-                      <li onClick={() => handleEdit(item)}>edit</li>
-                      <li onClick={() => handleDel(item.id)}>delete</li>
-                    </ul>
-                  </div>
-                ) : null}
-              </TableCell>
-            </TableRow>
-          ))}
+          {title == "Unit Year"
+            ? data
+                .sort((a, b) => (a.name > b.name ? -1 : 1))
+                .map((item, index) => (
+                  <TableRow
+                    key={`${item.name}${index}`}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell className={poppins.className}>
+                      {item.name}
+                    </TableCell>
+                    <TableCell className={poppins.className}>
+                      <Image
+                        onClick={() => handleToggleDrop(item.id)}
+                        src={"/images/edit.png"}
+                        width={24}
+                        height={24}
+                        alt="Edit"
+                      />
+                      {dropdown && currentId == item.id ? (
+                        <div className="dropdown">
+                          <ul className={poppins.className}>
+                            <li onClick={() => handleEdit(item)}>edit</li>
+                            <li onClick={() => handleDel(item.id)}>delete</li>
+                          </ul>
+                        </div>
+                      ) : null}
+                    </TableCell>
+                  </TableRow>
+                ))
+            : data
+                .sort((a, b) => (a.name < b.name ? -1 : 1))
+                .map((item, index) => (
+                  <TableRow
+                    key={`${item.name}${index}`}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell className={poppins.className}>
+                      {item.name}
+                    </TableCell>
+                    <TableCell className={poppins.className}>
+                      <Image
+                        onClick={() => handleToggleDrop(item.id)}
+                        src={"/images/edit.png"}
+                        width={24}
+                        height={24}
+                        alt="Edit"
+                      />
+                      {dropdown && currentId == item.id ? (
+                        <div className="dropdown">
+                          <ul className={poppins.className}>
+                            <li onClick={() => handleEdit(item)}>edit</li>
+                            <li onClick={() => handleDel(item.id)}>delete</li>
+                          </ul>
+                        </div>
+                      ) : null}
+                    </TableCell>
+                  </TableRow>
+                ))}
         </TableBody>
       </Table>
       <EditUnitModal
