@@ -8,12 +8,12 @@ function TopNavbar() {
   return (
     <nav className="top-navbar">
       <ul className="links-wrap">
-        <li>Link 1</li>
-        <li>Link 2</li>
-        <li>Link 3</li>
-        <li>Link 4</li>
-        <li>Link 5</li>
-        <li>Link 6</li>
+        <li>Dashboard</li>
+        <li>List</li>
+        <li>Purchasing</li>
+        <li>Units</li>
+        <li>Finance</li>
+        <li>Reports</li>
         <li>Link 7</li>
         <li
           className={pathname == "/settings" ? "activeLink" : "regularLink"}
