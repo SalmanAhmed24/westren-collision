@@ -4,12 +4,16 @@ import { useRouter, usePathname } from "next/navigation";
 function TopNavbar() {
   const router = useRouter();
   const pathname = usePathname();
-  console.log("pathname", pathname);
   return (
     <nav className="top-navbar">
       <ul className="links-wrap">
         <li>Dashboard</li>
-        <li>List</li>
+        <li
+          className={pathname == "/list" ? "activeLink" : "regularLink"}
+          onClick={() => router.push("/list")}
+        >
+          List
+        </li>
         <li>Purchasing</li>
         <li>Units</li>
         <li>Finance</li>

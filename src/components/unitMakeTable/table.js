@@ -57,6 +57,8 @@ function UnitTable({ data, refreshUnitData, title }) {
                 ? "unitYear"
                 : title == "Unit Type"
                 ? "unitType"
+                : title == "Client Type"
+                ? "clientType"
                 : ""
             }/${id}`
           )
@@ -87,6 +89,8 @@ function UnitTable({ data, refreshUnitData, title }) {
             ? "unitYear"
             : title == "Unit Type"
             ? "unitType"
+            : title == "Client Type"
+            ? "clientType"
             : ""
         }/${currentId}`,
         itemObj
