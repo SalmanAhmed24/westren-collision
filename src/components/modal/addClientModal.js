@@ -103,11 +103,11 @@ function AddClientModal({ open, handleClose, title, handleAddClient }) {
     };
     if (title == "client") {
       dataObj.clientName = clientName;
-      dataObj.clientType = clientType.value,
+      dataObj.clientType = clientType.value;
     }
     if (title == "vendor") {
       dataObj.vendorName = clientName;
-      dataObj.vendorType = clientType.value,
+      dataObj.vendorType = clientType.value;
     }
     handleAddClient(dataObj);
   };
