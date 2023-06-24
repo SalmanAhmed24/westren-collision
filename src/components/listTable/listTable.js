@@ -56,7 +56,7 @@ function ListTable({ data, refresh, title }) {
     console.log(itemObj);
     try {
       const res = await axios.patch(
-        `${apiRouth.devPath}/api/${title}/${currentId}`,
+        `${apiRouth.prodPath}/api/${title}/${currentId}`,
         itemObj
       );
       console.log(res);
