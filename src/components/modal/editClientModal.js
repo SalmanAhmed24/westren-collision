@@ -11,7 +11,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
-function EditClientModal({ open, handleClose, handleEditClient, item }) {
+function EditClientModal({ open, handleClose, handleEditClient, title, item }) {
   const [clientName, setClientName] = useState("");
   const [mainContact, setMainContact] = useState("");
   const [phoneWork, setPhoneWork] = useState("");
@@ -33,20 +33,29 @@ function EditClientModal({ open, handleClose, handleEditClient, item }) {
   useEffect(() => {
     console.log("this works", item.fax);
     axios
-      .get(`${apiRouth.prodPath}/api/clientType/`)
+      .get(`${apiRouth.prodPath}/api/${title}Type/`)
       .then((res) => {
-        setClientTypeData(res.data.clientType);
+        if (title == "client") {
+          setClientTypeData(res.data.clientType);
+        }
+        if (title == "vendor") {
+          setClientTypeData(res.data.vendorType);
+        }
       })
       .catch((error) => {
         console.log(error);
       });
-    setClientName(item.clientName);
+    setClientName(title == "client" ? item.clientName : item.vendorName);
     setMainContact(item.mainContact);
     setPhoneWork(item.phoneWork);
     setPhoneMobile(item.phoneMobile);
     setFax(item.fax);
     setEmail(item.mainEmail);
-    setClientType({ label: item.clientType, value: item.clientType });
+    setClientType(
+      title == "client"
+        ? { label: item.clientType, value: item.clientType }
+        : { label: item.vendorType, value: item.vendorType }
+    );
     setWebsite(item.website);
     setMainAddress(item.addressMain);
     setSecAddress(item.addressSec);
@@ -98,13 +107,11 @@ function EditClientModal({ open, handleClose, handleEditClient, item }) {
       return;
     }
     const dataObj = {
-      clientName,
       mainContact,
       phoneWork,
       phoneMobile: Number(phoneMobile),
       fax,
       mainEmail: email,
-      clientType: clientType.value,
       website,
       addressMain: mainAddress,
       addressSec: secAddress,
@@ -112,6 +119,14 @@ function EditClientModal({ open, handleClose, handleEditClient, item }) {
       state,
       zipCode,
     };
+    if (title == "client") {
+      dataObj.clientName = clientName;
+      dataObj.clientType = clientType.value;
+    }
+    if (title == "vendor") {
+      dataObj.vendorName = clientName;
+      dataObj.vendorType = clientType.value;
+    }
     handleEditClient(dataObj);
   };
   return (

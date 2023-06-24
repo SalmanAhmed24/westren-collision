@@ -36,14 +36,14 @@ function ListTable({ data, refresh, title }) {
   };
   const handleDel = (id) => {
     Swal.fire({
-      title: "Delete Client",
-      text: "Are you sure you want to delete Client.",
+      title: `Delete ${title}`,
+      text: `Are you sure you want to delete ${title}.`,
       showCancelButton: true,
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`${apiRouth.prodPath}/api/client/${id}`)
+          .delete(`${apiRouth.prodPath}/api/${title}/${id}`)
           .then((res) => {
             console.log(res);
             refresh();
@@ -56,7 +56,7 @@ function ListTable({ data, refresh, title }) {
     console.log(itemObj);
     try {
       const res = await axios.patch(
-        `${apiRouth.prodPath}/api/client/${currentId}`,
+        `${apiRouth.devPath}/api/${title}/${currentId}`,
         itemObj
       );
       console.log(res);
@@ -76,10 +76,10 @@ function ListTable({ data, refresh, title }) {
         <TableHead>
           <TableRow>
             <TableCell className={poppins.className} align="left">
-              Client Name
+              {title == "client" ? "Client Name" : "Vendor Name"}
             </TableCell>
             <TableCell className={poppins.className} align="left">
-              Client Type
+              {title == "client" ? "Client Type" : "Vendor Type"}
             </TableCell>
             <TableCell className={poppins.className} align="left">
               Email
@@ -110,10 +110,10 @@ function ListTable({ data, refresh, title }) {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell className={poppins.className}>
-                  {item.clientName}
+                  {title == "vendor" ? item.vendorName : item.clientName}
                 </TableCell>
                 <TableCell className={poppins.className}>
-                  {item.clientType}
+                  {title == "client" ? item.clientType : item.vendorType}
                 </TableCell>
                 <TableCell className={poppins.className}>
                   {item.mainEmail}
@@ -154,6 +154,7 @@ function ListTable({ data, refresh, title }) {
         handleClose={handleClose}
         handleEditClient={handleEditClient}
         item={currentItem}
+        title={title}
       />
     </TableContainer>
   );

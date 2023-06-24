@@ -11,18 +11,23 @@ function ListPage() {
   const [loader, setLoader] = useState(false);
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
+    console.log("this is called", linkVal);
     setLoader(true);
     axios
-      .get(`${apiRouth.prodPath}/api/client/`)
+      .get(`${apiRouth.prodPath}/api/${linkVal}/`)
       .then((res) => {
         setLoader(false);
-        setData(res.data.client);
+        if (linkVal == "client") {
+          setData(res.data.client);
+        } else if (linkVal == "vendor") {
+          setData(res.data.vendor);
+        }
       })
       .catch((error) => {
         setLoader(false);
         console.log(error);
       });
-  }, [refresh]);
+  }, [refresh, linkVal]);
   const refreshData = () => setRefresh(!refresh);
   const handleLinks = (e) => {
     setLinkVal(e.target.innerText.toLocaleLowerCase());

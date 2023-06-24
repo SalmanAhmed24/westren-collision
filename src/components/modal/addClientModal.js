@@ -11,7 +11,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
-function AddClientModal({ open, handleClose, handleAddClient }) {
+function AddClientModal({ open, handleClose, title, handleAddClient }) {
   const [clientName, setClientName] = useState("");
   const [mainContact, setMainContact] = useState("");
   const [phoneWork, setPhoneWork] = useState("");
@@ -32,9 +32,14 @@ function AddClientModal({ open, handleClose, handleAddClient }) {
   const [clientFlag, setClientFlag] = useState(false);
   useEffect(() => {
     axios
-      .get(`${apiRouth.prodPath}/api/clientType/`)
+      .get(`${apiRouth.prodPath}/api/${title}Type/`)
       .then((res) => {
-        setClientTypeData(res.data.clientType);
+        if (title == "client") {
+          setClientTypeData(res.data.clientType);
+        }
+        if (title == "vendor") {
+          setClientTypeData(res.data.vendorType);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -84,13 +89,11 @@ function AddClientModal({ open, handleClose, handleAddClient }) {
       return;
     }
     const dataObj = {
-      clientName,
       mainContact,
       phoneWork,
       phoneMobile,
       fax,
       mainEmail: email,
-      clientType: clientType.value,
       website,
       addressMain: mainAddress,
       addressSec: secAddress,
@@ -98,6 +101,14 @@ function AddClientModal({ open, handleClose, handleAddClient }) {
       state,
       zipCode,
     };
+    if (title == "client") {
+      dataObj.clientName = clientName;
+      dataObj.clientType = clientType.value,
+    }
+    if (title == "vendor") {
+      dataObj.vendorName = clientName;
+      dataObj.vendorType = clientType.value,
+    }
     handleAddClient(dataObj);
   };
   return (
@@ -146,7 +157,7 @@ function AddClientModal({ open, handleClose, handleAddClient }) {
             onChange={handleEmail}
             className={poppins.className}
           />
-          <label className={poppins.className}>Client Type</label>
+          <label className={poppins.className}>{title} Type</label>
           <Select
             options={clientTypeData.map((i) => ({
               label: i.name,
@@ -169,7 +180,7 @@ function AddClientModal({ open, handleClose, handleAddClient }) {
           <label>Zip Code</label>
           <input type="text" onChange={zipCodeHandler} />
           <button className={poppins.className} onClick={() => handleSubmit()}>
-            Add Client
+            Add {title}
           </button>
         </div>
       </Drawer>

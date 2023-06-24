@@ -14,14 +14,19 @@ function ListComponent({ title, data, refresh }) {
   };
   const handleAddClient = (dataObj) => {
     axios
-      .post(`${apiRouth.prodPath}/api/client/addClient`, dataObj)
+      .post(
+        `${apiRouth.prodPath}/api/${title}/${
+          title == "client" ? "addClient" : "addvendor"
+        }`,
+        dataObj
+      )
       .then((res) => {
         if (res.data.error == true) {
           Swal.fire({
             customClass: "errorClient",
             title: "Error",
             icon: "error",
-            text: "Error in creating client. You have entered a previously added email or some information are missing.",
+            text: `Error in creating ${title}. You have entered a previously added email or some information are missing.`,
           });
           return;
         }
@@ -40,13 +45,14 @@ function ListComponent({ title, data, refresh }) {
         {data.length ? (
           <ListTable title={title} data={data} refresh={refresh} />
         ) : (
-          <p>No Clients present right now. Please add new clients</p>
+          <p>No {title} present right now. Please add new clients</p>
         )}
       </div>
       <AddClientModal
         open={open}
         handleClose={handleClose}
         handleAddClient={handleAddClient}
+        title={title}
       />
     </section>
   );
