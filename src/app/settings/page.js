@@ -9,6 +9,7 @@ import UnitJob from "@/components/unitJob";
 import UnitYear from "@/components/unitYear";
 import UnitType from "@/components/unitType";
 import ClientTypeList from "@/components/clientTypeList";
+import VendorTypeList from "@/components/vendorType";
 function Settings() {
   const [linkVal, setLinkVal] = useState("picklist editor");
   const [innerLink, setInnerLink] = useState(
@@ -66,6 +67,9 @@ function Settings() {
             <p className={innerLink == "Client Type" ? "activeInnerLink" : ""}>
               Client Type
             </p>
+            <p className={innerLink == "Vendor Type" ? "activeInnerLink" : ""}>
+              Vendor Type
+            </p>
           </div>
         ) : null}
       </section>
@@ -84,6 +88,9 @@ function Settings() {
           {innerLink == "Unit Type" ? <UnitType title={innerLink} /> : null}
           {innerLink == "Client Type" ? (
             <ClientTypeList title={innerLink} />
+          ) : null}
+          {innerLink == "Vendor Type" ? (
+            <VendorTypeList title={innerLink} />
           ) : null}
         </div>
       </section>

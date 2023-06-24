@@ -8,7 +8,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
-function AddUnitModal({ open, handleClose, handleAddUnit }) {
+function AddUnitModal({ open, handleClose, handleAddUnit, title }) {
   const [name, setName] = useState("");
   const handleName = (e) => {
     setName(e.target.value);
@@ -33,7 +33,7 @@ function AddUnitModal({ open, handleClose, handleAddUnit }) {
             className={poppins.className}
             onClick={() => handleAddUnit({ name })}
           >
-            Add Unit Make
+            Add {title}
           </button>
         </div>
       </Drawer>

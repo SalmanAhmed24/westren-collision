@@ -169,7 +169,7 @@ function AddClientModal({ open, handleClose, handleAddClient }) {
           <label>Zip Code</label>
           <input type="text" onChange={zipCodeHandler} />
           <button className={poppins.className} onClick={() => handleSubmit()}>
-            Add Unit Make
+            Add Client
           </button>
         </div>
       </Drawer>

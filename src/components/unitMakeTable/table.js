@@ -34,8 +34,8 @@ function UnitTable({ data, refreshUnitData, title }) {
   };
   const handleDel = (id) => {
     Swal.fire({
-      title: "Delete Unit Make",
-      text: "Are you sure you want to delete unit make.",
+      title: `Delete ${title}`,
+      text: `Are you sure you want to delete ${title}`,
       showCancelButton: true,
       confirmButtonText: "Delete",
     }).then((result) => {
@@ -59,6 +59,8 @@ function UnitTable({ data, refreshUnitData, title }) {
                 ? "unitType"
                 : title == "Client Type"
                 ? "clientType"
+                : title == "Vendor Type"
+                ? "vendorType"
                 : ""
             }/${id}`
           )
@@ -91,6 +93,8 @@ function UnitTable({ data, refreshUnitData, title }) {
             ? "unitType"
             : title == "Client Type"
             ? "clientType"
+            : title == "Vendor Type"
+            ? "vendorType"
             : ""
         }/${currentId}`,
         itemObj
@@ -191,6 +195,7 @@ function UnitTable({ data, refreshUnitData, title }) {
         handleClose={handleClose}
         handleEditUnit={handleEditUnit}
         item={currentItem}
+        title={title}
       />
     </TableContainer>
   );

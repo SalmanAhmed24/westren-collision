@@ -8,7 +8,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
-function EditUnitModal({ open, handleClose, handleEditUnit, item }) {
+function EditUnitModal({ open, handleClose, handleEditUnit, item, title }) {
   const [name, setName] = useState("");
   useEffect(() => {
     setName(item.name);
@@ -37,7 +37,7 @@ function EditUnitModal({ open, handleClose, handleEditUnit, item }) {
             className={poppins.className}
             onClick={() => handleEditUnit({ name })}
           >
-            Edit Unit Make
+            Edit {title}
           </button>
         </div>
       </Drawer>

@@ -81,6 +81,7 @@ function Branch({ title }) {
         open={open}
         handleClose={handleClose}
         handleAddUnit={handleAddUnit}
+        title={title}
       />
     </main>
   );

@@ -11,7 +11,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
-function ClientTypeList({ title }) {
+function VendorTypeList({ title }) {
   console.log("this is title", title);
   const [refreshFlag, setRefreshFlag] = useState(false);
   const [data, setData] = useState([]);
@@ -26,9 +26,9 @@ function ClientTypeList({ title }) {
   };
   const fetchData = async () => {
     setLoadingFlag(true);
-    const res = await axios.get(`${apiRouth.prodPath}/api/clientType/`);
+    const res = await axios.get(`${apiRouth.prodPath}/api/vendorType/`);
     if (res.data && res.data.error == false) {
-      setData(res.data.clientType);
+      setData(res.data.vendorType);
       setLoadingFlag(false);
     } else {
       setLoadingFlag(false);
@@ -37,7 +37,7 @@ function ClientTypeList({ title }) {
   const handleAddUnit = async (itemObj) => {
     try {
       const res = await axios.post(
-        `${apiRouth.prodPath}/api/clientType/addclientType`,
+        `${apiRouth.prodPath}/api/vendorType/addVendorType`,
         itemObj
       );
       console.log(res);
@@ -87,4 +87,4 @@ function ClientTypeList({ title }) {
   );
 }
 
-export default ClientTypeList;
+export default VendorTypeList;
