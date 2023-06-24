@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Westren Collision",
+  title: "western Collision",
 };
 import TopNavbar from "../components/topNavbar/topNavbar";
 import "../styles/global.scss";
