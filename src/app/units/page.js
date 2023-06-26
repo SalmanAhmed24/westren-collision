@@ -14,7 +14,7 @@ function UnitsPage() {
     console.log("this is called", linkVal);
     setLoader(true);
     axios
-      .get(`${apiRouth.devPath}/api/units/`)
+      .get(`${apiRouth.prodPath}/api/units/`)
       .then((res) => {
         setLoader(false);
         setData(res.data.units);

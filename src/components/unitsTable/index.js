@@ -44,7 +44,7 @@ function UnitsTable({ data, refresh, title }) {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`${apiRouth.devPath}/api/units/${id}`)
+          .delete(`${apiRouth.prodPath}/api/units/${id}`)
           .then((res) => {
             console.log(res);
             refresh();
@@ -57,7 +57,7 @@ function UnitsTable({ data, refresh, title }) {
     console.log(itemObj);
     try {
       const res = await axios.patch(
-        `${apiRouth.devPath}/api/${title}/${currentId}`,
+        `${apiRouth.prodPath}/api/${title}/${currentId}`,
         itemObj
       );
       console.log(res);

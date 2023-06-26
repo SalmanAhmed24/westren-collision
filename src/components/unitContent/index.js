@@ -15,7 +15,7 @@ function UnitComponent({ title, data, refresh }) {
   };
   const handleAddUnits = (dataObj) => {
     axios
-      .post(`${apiRouth.devPath}/api/units/addUnits`, dataObj)
+      .post(`${apiRouth.prodPath}/api/units/addUnits`, dataObj)
       .then((res) => {
         if (res.data.error == true) {
           Swal.fire({
