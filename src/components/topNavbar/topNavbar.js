@@ -15,7 +15,12 @@ function TopNavbar() {
           List
         </li>
         <li>Purchasing</li>
-        <li>Units</li>
+        <li
+          className={pathname == "/units" ? "activeLink" : "regularLink"}
+          onClick={() => router.push("/units")}
+        >
+          Units
+        </li>
         <li>Finance</li>
         <li>Reports</li>
         <li>Link 7</li>

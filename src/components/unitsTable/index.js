@@ -5,7 +5,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import "./table.scss";
+import "./unitsTable.scss";
 import Image from "next/image";
 import { Poppins } from "next/font/google";
 import React, { useState } from "react";
@@ -14,11 +14,12 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import apiRouth from "@/utils/routes";
 import EditClientModal from "../modal/editClientModal";
+import EditUnitsModal from "../modal/editUnitsModal";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
-function ListTable({ data, refresh, title }) {
+function UnitsTable({ data, refresh, title }) {
   console.log(data);
   const [dropdown, setDropdown] = useState(false);
   const [currentId, setCurrentId] = useState(false);
@@ -43,7 +44,7 @@ function ListTable({ data, refresh, title }) {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`${apiRouth.prodPath}/api/${title}/${id}`)
+          .delete(`${apiRouth.devPath}/api/units/${id}`)
           .then((res) => {
             console.log(res);
             refresh();
@@ -56,7 +57,7 @@ function ListTable({ data, refresh, title }) {
     console.log(itemObj);
     try {
       const res = await axios.patch(
-        `${apiRouth.prodPath}/api/${title}/${currentId}`,
+        `${apiRouth.devPath}/api/${title}/${currentId}`,
         itemObj
       );
       console.log(res);
@@ -77,25 +78,31 @@ function ListTable({ data, refresh, title }) {
         <TableHead>
           <TableRow>
             <TableCell className={poppins.className} align="left">
-              {title == "client" ? "Client Name" : "Vendor Name"}
+              Branch
             </TableCell>
             <TableCell className={poppins.className} align="left">
-              {title == "client" ? "Client Type" : "Vendor Type"}
+              Unit Client
             </TableCell>
             <TableCell className={poppins.className} align="left">
-              Email
+              Unit Location
             </TableCell>
             <TableCell className={poppins.className} align="left">
-              Contact
+              Unit Make
             </TableCell>
             <TableCell className={poppins.className} align="left">
-              Address
+              Unit Model
             </TableCell>
             <TableCell className={poppins.className} align="left">
-              City
+              Unit Year
             </TableCell>
             <TableCell className={poppins.className} align="left">
-              State
+              Notes
+            </TableCell>
+            <TableCell className={poppins.className} align="left">
+              Tasks
+            </TableCell>
+            <TableCell className={poppins.className} align="left">
+              Additional Information
             </TableCell>
             <TableCell className={poppins.className} align="left">
               Actions
@@ -111,23 +118,44 @@ function ListTable({ data, refresh, title }) {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell className={poppins.className}>
-                  {title == "vendor" ? item.vendorName : item.clientName}
+                  {item.branch}
                 </TableCell>
                 <TableCell className={poppins.className}>
-                  {title == "client" ? item.clientType : item.vendorType}
+                  {item.unitClient}
                 </TableCell>
                 <TableCell className={poppins.className}>
-                  {item.mainEmail}
+                  {item.unitLocation}
                 </TableCell>
                 <TableCell className={poppins.className}>
-                  {item.mainContact}
+                  {item.unitMake}
                 </TableCell>
                 <TableCell className={poppins.className}>
-                  {item.addressMain}
+                  {item.unitModel}
                 </TableCell>
-                <TableCell className={poppins.className}>{item.city}</TableCell>
                 <TableCell className={poppins.className}>
-                  {item.state}
+                  {item.unitYear}
+                </TableCell>
+                <TableCell className={poppins.className}>
+                  {item.notes && item.notes.length > 0 ? (
+                    <button className="notesBtn">View Notes</button>
+                  ) : (
+                    "none"
+                  )}
+                </TableCell>
+                <TableCell className={poppins.className}>
+                  {item.tasks && item.tasks.length > 0 ? (
+                    <button className="notesBtn">View Notes</button>
+                  ) : (
+                    <button className="notesBtn">Add Notes</button>
+                  )}
+                </TableCell>
+                <TableCell className={poppins.className}>
+                  {item.additionalInformation &&
+                  item.additionalInformation.length > 0 ? (
+                    <button className="notesBtn">View Info</button>
+                  ) : (
+                    <button className="notesBtn">Add Info</button>
+                  )}
                 </TableCell>
                 <TableCell className={poppins.className}>
                   <Image
@@ -150,7 +178,7 @@ function ListTable({ data, refresh, title }) {
             ))}
         </TableBody>
       </Table>
-      <EditClientModal
+      <EditUnitsModal
         open={open}
         handleClose={handleClose}
         handleEditClient={handleEditClient}
@@ -161,4 +189,4 @@ function ListTable({ data, refresh, title }) {
   );
 }
 
-export default ListTable;
+export default UnitsTable;
