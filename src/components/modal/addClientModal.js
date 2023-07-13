@@ -135,13 +135,13 @@ function AddClientModal({ open, handleClose, title, handleAddClient }) {
           />
           <label className={poppins.className}>Phone (Work)</label>
           <input
-            type="number"
+            type="text"
             onChange={handlePhoneWork}
             className={poppins.className}
           />
           <label className={poppins.className}>Phone (Mobile)</label>
           <input
-            type="number"
+            type="text"
             onChange={handlePhoneMobile}
             className={poppins.className}
           />

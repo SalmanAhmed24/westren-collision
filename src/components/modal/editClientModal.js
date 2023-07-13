@@ -109,7 +109,7 @@ function EditClientModal({ open, handleClose, handleEditClient, title, item }) {
     const dataObj = {
       mainContact,
       phoneWork,
-      phoneMobile: Number(phoneMobile),
+      phoneMobile: phoneMobile,
       fax,
       mainEmail: email,
       website,
@@ -155,14 +155,14 @@ function EditClientModal({ open, handleClose, handleEditClient, title, item }) {
           />
           <label className={poppins.className}>Phone (Work)</label>
           <input
-            type="number"
+            type="text"
             onChange={handlePhoneWork}
             className={poppins.className}
             value={phoneWork}
           />
           <label className={poppins.className}>Phone (Mobile)</label>
           <input
-            type={"number"}
+            type={"text"}
             onChange={handlePhoneMobile}
             className={poppins.className}
             value={phoneMobile}
