@@ -120,6 +120,14 @@ function UnitTable({ data, refreshUnitData, title }) {
       >
         <TableHead>
           <TableRow>
+            {title == "Branch" ||
+            title == "Unit Make" ||
+            title == "Unit Model" ||
+            title == "Client Type" ? (
+              <TableCell className={poppins.className} align="left">
+                Shortcode
+              </TableCell>
+            ) : null}
             <TableCell className={poppins.className} align="left">
               Name
             </TableCell>
@@ -166,6 +174,14 @@ function UnitTable({ data, refreshUnitData, title }) {
                     key={`${item.name}${index}`}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
+                    {title == "Branch" ||
+                    title == "Unit Make" ||
+                    title == "Unit Model" ||
+                    title == "Client Type" ? (
+                      <TableCell className={poppins.className}>
+                        {item.shortCode}
+                      </TableCell>
+                    ) : null}
                     <TableCell className={poppins.className}>
                       {item.name}
                     </TableCell>

@@ -10,12 +10,15 @@ const poppins = Poppins({
 });
 function EditUnitModal({ open, handleClose, handleEditUnit, item, title }) {
   const [name, setName] = useState("");
+  const [shortCode, setShortCode] = useState("");
   useEffect(() => {
     setName(item.name);
+    setShortCode(item.shortCode);
   }, [open]);
   const handleName = (e) => {
     setName(e.target.value);
   };
+  const handleShortCode = (e) => setShortCode(e.target.value);
   return (
     <div>
       <Drawer
@@ -33,12 +36,38 @@ function EditUnitModal({ open, handleClose, handleEditUnit, item, title }) {
             className={poppins.className}
             value={name}
           />
-          <button
-            className={poppins.className}
-            onClick={() => handleEditUnit({ name })}
-          >
-            Edit {title}
-          </button>
+          {title == "Branch" ||
+          title == "Unit Make" ||
+          title == "Unit Model" ||
+          title == "Client Type" ? (
+            <>
+              <label className={poppins.className}>Shortcode</label>
+              <input
+                type="text"
+                onChange={handleShortCode}
+                className={poppins.className}
+                value={shortCode}
+              />
+            </>
+          ) : null}
+          {title == "Branch" ||
+          title == "Unit Make" ||
+          title == "Unit Model" ||
+          title == "Client Type" ? (
+            <button
+              className={poppins.className}
+              onClick={() => handleEditUnit({ name, shortCode })}
+            >
+              Edit {title}
+            </button>
+          ) : (
+            <button
+              className={poppins.className}
+              onClick={() => handleEditUnit({ name })}
+            >
+              Edit {title}
+            </button>
+          )}
         </div>
       </Drawer>
     </div>

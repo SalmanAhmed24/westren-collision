@@ -10,9 +10,11 @@ const poppins = Poppins({
 });
 function AddUnitModal({ open, handleClose, handleAddUnit, title }) {
   const [name, setName] = useState("");
+  const [shortCode, setShortCode] = useState("");
   const handleName = (e) => {
     setName(e.target.value);
   };
+  const handleShortCode = (e) => setShortCode(e.target.value);
   return (
     <div>
       <Drawer
@@ -29,12 +31,37 @@ function AddUnitModal({ open, handleClose, handleAddUnit, title }) {
             onChange={handleName}
             className={poppins.className}
           />
-          <button
-            className={poppins.className}
-            onClick={() => handleAddUnit({ name })}
-          >
-            Add {title}
-          </button>
+          {title == "Branch" ||
+          title == "Unit Make" ||
+          title == "Unit Model" ||
+          title == "Client Type" ? (
+            <>
+              <label className={poppins.className}>Shortcode</label>
+              <input
+                type="text"
+                onChange={handleShortCode}
+                className={poppins.className}
+              />
+            </>
+          ) : null}
+          {title == "Branch" ||
+          title == "Unit Make" ||
+          title == "Unit Model" ||
+          title == "Client Type" ? (
+            <button
+              className={poppins.className}
+              onClick={() => handleAddUnit({ name, shortCode })}
+            >
+              Add {title}
+            </button>
+          ) : (
+            <button
+              className={poppins.className}
+              onClick={() => handleAddUnit({ name })}
+            >
+              Add {title}
+            </button>
+          )}
         </div>
       </Drawer>
     </div>
