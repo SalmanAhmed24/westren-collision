@@ -1,10 +1,18 @@
 "use client";
 import "./topNavbar.scss";
+import { LOGIN_INFO } from "../../store/action/user-action";
 import { useRouter, usePathname } from "next/navigation";
+import { useSelector, useDispatch } from "react-redux";
 function TopNavbar() {
   const router = useRouter();
   const pathname = usePathname();
-  return (
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.userReducer);
+  const handleLogout = () => {
+    dispatch(LOGIN_INFO(null));
+    router.push("./login");
+  };
+  return userInfo.user == null ? null : (
     <nav className="top-navbar">
       <ul className="links-wrap">
         <li>Dashboard</li>
@@ -31,6 +39,7 @@ function TopNavbar() {
           Settings
         </li>
       </ul>
+      <button onClick={handleLogout}>Logout</button>
     </nav>
   );
 }

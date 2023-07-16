@@ -39,6 +39,7 @@ function EditUnitModal({ open, handleClose, handleEditUnit, item, title }) {
           {title == "Branch" ||
           title == "Unit Make" ||
           title == "Unit Model" ||
+          title == "Unit Type" ||
           title == "Client Type" ? (
             <>
               <label className={poppins.className}>Shortcode</label>
@@ -53,6 +54,7 @@ function EditUnitModal({ open, handleClose, handleEditUnit, item, title }) {
           {title == "Branch" ||
           title == "Unit Make" ||
           title == "Unit Model" ||
+          title == "Unit Type" ||
           title == "Client Type" ? (
             <button
               className={poppins.className}

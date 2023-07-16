@@ -122,6 +122,7 @@ function UnitTable({ data, refreshUnitData, title }) {
           <TableRow>
             {title == "Branch" ||
             title == "Unit Make" ||
+            title == "Unit Type" ||
             title == "Unit Model" ||
             title == "Client Type" ? (
               <TableCell className={poppins.className} align="left">
@@ -176,6 +177,7 @@ function UnitTable({ data, refreshUnitData, title }) {
                   >
                     {title == "Branch" ||
                     title == "Unit Make" ||
+                    title == "Unit Type" ||
                     title == "Unit Model" ||
                     title == "Client Type" ? (
                       <TableCell className={poppins.className}>

@@ -5,12 +5,19 @@ import ListComponent from "@/components/listContent";
 import axios from "axios";
 import Image from "next/image";
 import apiRouth from "@/utils/routes";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 function ListPage() {
   const [linkVal, setLinkVal] = useState("client");
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(false);
   const [refresh, setRefresh] = useState(false);
+  const router = useRouter();
+  const userInfo = useSelector((state) => state.userReducer);
   useEffect(() => {
+    if (userInfo.user == null) {
+      router.push("./login");
+    }
     console.log("this is called", linkVal);
     setLoader(true);
     axios

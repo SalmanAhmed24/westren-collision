@@ -1,7 +1,7 @@
 "use client";
 import UnitMake from "@/components/UnitMake/unitMake";
 import "./picklist.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Branch from "@/components/branch/branch";
 import UnitLocation from "@/components/unitLocation/unitLocation";
 import UnitModel from "@/components/unitModel";
@@ -11,11 +11,20 @@ import UnitType from "@/components/unitType";
 import ClientTypeList from "@/components/clientTypeList";
 import VendorTypeList from "@/components/vendorType";
 import Employess from "@/components/employees";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 function Settings() {
   const [linkVal, setLinkVal] = useState("picklist editor");
   const [innerLink, setInnerLink] = useState(
     linkVal == "picklist editor" ? "Unit Make" : ""
   );
+  const router = useRouter();
+  const userInfo = useSelector((state) => state.userReducer);
+  useEffect(() => {
+    if (userInfo.user == null) {
+      router.push("./login");
+    }
+  }, [userInfo]);
   const handleLinks = (e) => {
     console.log("link", e.target.innerText.toLocaleLowerCase());
     setLinkVal(e.target.innerText.toLocaleLowerCase());

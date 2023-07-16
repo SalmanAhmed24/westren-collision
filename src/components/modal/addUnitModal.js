@@ -33,6 +33,7 @@ function AddUnitModal({ open, handleClose, handleAddUnit, title }) {
           />
           {title == "Branch" ||
           title == "Unit Make" ||
+          title == "Unit Type" ||
           title == "Unit Model" ||
           title == "Client Type" ? (
             <>
@@ -46,6 +47,7 @@ function AddUnitModal({ open, handleClose, handleAddUnit, title }) {
           ) : null}
           {title == "Branch" ||
           title == "Unit Make" ||
+          title == "Unit Type" ||
           title == "Unit Model" ||
           title == "Client Type" ? (
             <button
