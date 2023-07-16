@@ -1,7 +1,4 @@
 "use client";
-export const metadata = {
-  title: "western Collision",
-};
 import TopNavbar from "../components/topNavbar/topNavbar";
 import "../styles/global.scss";
 import { Poppins } from "next/font/google";
