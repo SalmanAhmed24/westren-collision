@@ -13,6 +13,7 @@ import VendorTypeList from "@/components/vendorType";
 import Employess from "@/components/employees";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import UnitStatus from "@/components/unitStatus";
 function Settings() {
   const [linkVal, setLinkVal] = useState("picklist editor");
   const [innerLink, setInnerLink] = useState(
@@ -83,6 +84,9 @@ function Settings() {
             <p className={innerLink == "Employees" ? "activeInnerLink" : ""}>
               Employees
             </p>
+            <p className={innerLink == "Unit Status" ? "activeInnerLink" : ""}>
+              Unit Status
+            </p>
           </div>
         ) : null}
       </section>
@@ -106,6 +110,7 @@ function Settings() {
             <VendorTypeList title={innerLink} />
           ) : null}
           {innerLink == "Employees" ? <Employess title={innerLink} /> : null}
+          {innerLink == "Unit Status" ? <UnitStatus title={innerLink} /> : null}
         </div>
       </section>
     </main>

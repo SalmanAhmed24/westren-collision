@@ -61,6 +61,8 @@ function UnitTable({ data, refreshUnitData, title }) {
                 ? "clientType"
                 : title == "Vendor Type"
                 ? "vendorType"
+                : title == "Unit Status"
+                ? "unitStatus"
                 : ""
             }/${id}`
           )
@@ -95,6 +97,8 @@ function UnitTable({ data, refreshUnitData, title }) {
             ? "clientType"
             : title == "Vendor Type"
             ? "vendorType"
+            : title == "Unit Status"
+            ? "unitStatus"
             : ""
         }/${currentId}`,
         itemObj
@@ -123,6 +127,7 @@ function UnitTable({ data, refreshUnitData, title }) {
             {title == "Branch" ||
             title == "Unit Make" ||
             title == "Unit Type" ||
+            title == "Unit Status" ||
             title == "Unit Model" ||
             title == "Client Type" ? (
               <TableCell className={poppins.className} align="left">
@@ -179,6 +184,7 @@ function UnitTable({ data, refreshUnitData, title }) {
                     title == "Unit Make" ||
                     title == "Unit Type" ||
                     title == "Unit Model" ||
+                    title == "Unit Status" ||
                     title == "Client Type" ? (
                       <TableCell className={poppins.className}>
                         {item.shortCode}
