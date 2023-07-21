@@ -10,8 +10,13 @@ function UnitComponent({ title, data, refresh }) {
   console.log("list component", data);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
+  const [tabs, setTabs] = useState("Info");
+
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleTabs = (e) => {
+    setTabs(e.target.innerText);
   };
   const handleAddUnits = (dataObj) => {
     axios
@@ -44,6 +49,7 @@ function UnitComponent({ title, data, refresh }) {
           <p>No {title} present right now. Please add new clients</p>
         )}
       </div>
+
       <AddUnitsModal
         open={open}
         handleClose={handleClose}

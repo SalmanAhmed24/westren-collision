@@ -15,6 +15,7 @@ import Swal from "sweetalert2";
 import apiRouth from "@/utils/routes";
 import EditClientModal from "../modal/editClientModal";
 import EditUnitsModal from "../modal/editUnitsModal";
+import UnitsInfoModal from "../modal/unitsInfoModal";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -24,9 +25,15 @@ function UnitsTable({ data, refresh, title }) {
   const [dropdown, setDropdown] = useState(false);
   const [currentId, setCurrentId] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openInfo, setOpenInfo] = useState(false);
   const [currentItem, setCurrentItem] = useState("");
   const handleOpen = () => setOpen(true);
+  const handleOpenInfo = (item) => {
+    setCurrentItem(item);
+    setOpenInfo(true);
+  };
   const handleClose = () => setOpen(false);
+  const handleCloseInfo = () => setOpenInfo(false);
   const handleToggleDrop = (id) => {
     setCurrentId(id);
     setDropdown(!dropdown);
@@ -68,7 +75,7 @@ function UnitsTable({ data, refresh, title }) {
     }
   };
   return (
-    <TableContainer className="table-con" component={Paper}>
+    <TableContainer className="table-con table-unit" component={Paper}>
       <Table
         className="unitMake-t"
         sx={{ minWidth: 650 }}
@@ -94,15 +101,6 @@ function UnitsTable({ data, refresh, title }) {
             </TableCell>
             <TableCell className={poppins.className} align="left">
               Unit Year
-            </TableCell>
-            <TableCell className={poppins.className} align="left">
-              Notes
-            </TableCell>
-            <TableCell className={poppins.className} align="left">
-              Tasks
-            </TableCell>
-            <TableCell className={poppins.className} align="left">
-              Additional Information
             </TableCell>
             <TableCell className={poppins.className} align="left">
               Actions
@@ -136,28 +134,6 @@ function UnitsTable({ data, refresh, title }) {
                   {item.unitYear}
                 </TableCell>
                 <TableCell className={poppins.className}>
-                  {item.notes && item.notes.length > 0 ? (
-                    <button className="notesBtn">View Notes</button>
-                  ) : (
-                    "none"
-                  )}
-                </TableCell>
-                <TableCell className={poppins.className}>
-                  {item.tasks && item.tasks.length > 0 ? (
-                    <button className="notesBtn">View Notes</button>
-                  ) : (
-                    <button className="notesBtn">Add Notes</button>
-                  )}
-                </TableCell>
-                <TableCell className={poppins.className}>
-                  {item.additionalInformation &&
-                  item.additionalInformation.length > 0 ? (
-                    <button className="notesBtn">View Info</button>
-                  ) : (
-                    <button className="notesBtn">Add Info</button>
-                  )}
-                </TableCell>
-                <TableCell className={poppins.className}>
                   <Image
                     onClick={() => handleToggleDrop(item.id)}
                     src={"/images/edit.png"}
@@ -168,6 +144,7 @@ function UnitsTable({ data, refresh, title }) {
                   {dropdown && currentId == item.id ? (
                     <div className="dropdown">
                       <ul className={poppins.className}>
+                        <li onClick={() => handleOpenInfo(item)}>Open Info</li>
                         <li onClick={() => handleEdit(item)}>edit</li>
                         <li onClick={() => handleDel(item.id)}>delete</li>
                       </ul>
@@ -184,6 +161,12 @@ function UnitsTable({ data, refresh, title }) {
         handleEditClient={handleEditClient}
         item={currentItem}
         title={title}
+      />
+      <UnitsInfoModal
+        open={openInfo}
+        handleClose={handleCloseInfo}
+        item={currentItem}
+        refreshMain={refresh}
       />
     </TableContainer>
   );

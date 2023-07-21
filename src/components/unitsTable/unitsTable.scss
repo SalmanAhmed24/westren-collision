@@ -35,3 +35,14 @@
                 }
         }
 }
+.table-unit{
+    height: 400px;
+    overflow-y: scroll;
+}
+.MuiTableRow-root{
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+        &:hover{
+            background-color: #efefef;
+        }
+}

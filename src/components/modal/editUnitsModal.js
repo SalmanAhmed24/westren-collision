@@ -31,6 +31,8 @@ function EditUnitsModal({ open, handleClose, handleEditClient, title, item }) {
   const [unitMakeOpt, setUnitMakeOpt] = useState([]);
   const [unitModelOpt, setUnitModelOpt] = useState([]);
   const [unitJobOpt, setUnitJobOpt] = useState([]);
+  const [unitStatus, setUnitStatus] = useState("");
+  const [unitStatusOpt, setUnitStatusOpt] = useState([]);
   useEffect(() => {
     axios
       .get(`${apiRouth.prodPath}/api/branch/`)
@@ -111,6 +113,19 @@ function EditUnitsModal({ open, handleClose, handleEditClient, title, item }) {
         );
       })
       .catch((error) => console.log(error));
+    axios
+      .get(`${apiRouth.prodPath}/api/unitStatus`)
+      .then((res) => {
+        setUnitStatusOpt(
+          res.data.unitStatus.map((i) => ({
+            label: i.name,
+            value: i.name,
+          }))
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     setBranch({
       label: item.branch,
       value: item.branch,
@@ -146,6 +161,9 @@ function EditUnitsModal({ open, handleClose, handleEditClient, title, item }) {
     });
     setNote(
       item.notes && item.notes.length && item.notes[0] && item.notes[0].note
+    );
+    setUnitStatus(
+      item.unitStatus && item.unitStatus.map((i) => ({ label: i, value: i }))
     );
   }, [open]);
   const submitHandler = () => {
@@ -231,6 +249,13 @@ function EditUnitsModal({ open, handleClose, handleEditClient, title, item }) {
             options={unitJobOpt}
             onChange={(v) => setUnitJob(v)}
             value={unitJob}
+          />
+          <label className={poppins.className}>Unit Status</label>
+          <Select
+            isMulti={true}
+            options={unitStatusOpt}
+            onChange={(v) => setUnitStatus(v)}
+            value={unitStatus}
           />
           <label className={poppins.className}>Notes</label>
           <textarea

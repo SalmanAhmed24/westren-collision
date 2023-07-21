@@ -17,6 +17,7 @@ function UnitType({ title }) {
   const [data, setData] = useState([]);
   const [loadingFlag, setLoadingFlag] = useState(false);
   const [open, setOpen] = useState(false);
+  const [tabs, setTabs] = useState("Info");
   useEffect(() => {
     fetchData();
   }, [refreshFlag]);
@@ -33,6 +34,9 @@ function UnitType({ title }) {
     } else {
       setLoadingFlag(false);
     }
+  };
+  const handleTabs = (e) => {
+    setTabs(e.target.innerText);
   };
   const handleAddUnit = async (itemObj) => {
     try {
@@ -77,6 +81,7 @@ function UnitType({ title }) {
           />
         )}
       </section>
+
       <AddUnitModal
         open={open}
         handleClose={handleClose}

@@ -1,0 +1,16 @@
+.infoModal{
+    .MuiPaper-root{
+        width: 90%;
+        padding: 20px;
+        overflow-y: scroll;
+    }
+}
+.default-v{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+        .inner-v{
+            width: 200px;
+            margin: 5px 0px;
+        }
+}

@@ -31,6 +31,8 @@ function AddUnitsModal({ open, handleClose, handleAddUnit, title }) {
   const [unitMakeOpt, setUnitMakeOpt] = useState([]);
   const [unitModelOpt, setUnitModelOpt] = useState([]);
   const [unitJobOpt, setUnitJobOpt] = useState([]);
+  const [unitStatus, setUnitStatus] = useState("");
+  const [unitStatusOpt, setUnitStatusOpt] = useState([]);
   useEffect(() => {
     axios
       .get(`${apiRouth.prodPath}/api/branch/`)
@@ -111,6 +113,19 @@ function AddUnitsModal({ open, handleClose, handleAddUnit, title }) {
         );
       })
       .catch((error) => console.log(error));
+    axios
+      .get(`${apiRouth.prodPath}/api/unitStatus`)
+      .then((res) => {
+        setUnitStatusOpt(
+          res.data.unitStatus.map((i) => ({
+            label: i.name,
+            value: i.name,
+          }))
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, [open]);
   const submitHandler = () => {
     const dataObj = {
@@ -123,12 +138,18 @@ function AddUnitsModal({ open, handleClose, handleAddUnit, title }) {
       unitMake: unitMake.value,
       unitModel: unitModel.value,
       unitJobUrgency: unitJob.value,
+      unitStatus: unitStatus.map((i) => i.value),
       notes: [
         {
           note,
           date: moment().format("MMMM Do YYYY, h:mm:ss a"),
         },
       ],
+      info: null,
+      tasks: null,
+      work: null,
+      parts: null,
+      $: null,
     };
     handleAddUnit(dataObj);
   };
@@ -191,6 +212,13 @@ function AddUnitsModal({ open, handleClose, handleAddUnit, title }) {
             options={unitJobOpt}
             onChange={(v) => setUnitJob(v)}
             value={unitJob}
+          />
+          <label className={poppins.className}>Unit Status</label>
+          <Select
+            isMulti={true}
+            options={unitStatusOpt}
+            onChange={(v) => setUnitStatus(v)}
+            value={unitStatus}
           />
           <label className={poppins.className}>Notes</label>
           <textarea
