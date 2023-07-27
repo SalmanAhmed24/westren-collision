@@ -2,6 +2,7 @@
 import Modal from "@mui/material/Modal";
 import Drawer from "@mui/material/Drawer";
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import "./addUnitModal.scss";
 import { Poppins } from "next/font/google";
 import Select from "react-select";
@@ -33,6 +34,9 @@ function AddUnitsModal({ open, handleClose, handleAddUnit, title }) {
   const [unitJobOpt, setUnitJobOpt] = useState([]);
   const [unitStatus, setUnitStatus] = useState("");
   const [unitStatusOpt, setUnitStatusOpt] = useState([]);
+
+  const user = useSelector((state) => state.userReducer);
+  console.log("this is user", user);
   useEffect(() => {
     axios
       .get(`${apiRouth.prodPath}/api/branch/`)
@@ -142,7 +146,12 @@ function AddUnitsModal({ open, handleClose, handleAddUnit, title }) {
       notes: [
         {
           note,
-          date: moment().format("MMMM Do YYYY, h:mm:ss a"),
+          date: moment().format("DD-MM-YYYY"),
+          time: moment().format("HH:MM"),
+          user:
+            user.user && user.user.userInfo
+              ? user.user.userInfo.fullname
+              : "N/A",
         },
       ],
       info: null,

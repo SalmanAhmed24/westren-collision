@@ -55,3 +55,21 @@
                 }
         }
 }
+.notes-wraper{
+    .notes{
+        border-bottom: 1px solid #cfcfcf;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+    }
+    .user{
+        display: flex;
+        justify-content: flex-start;
+        h3{
+            font-size: 14px;
+        }
+        p{
+            font-size: 14px;
+        }
+    
+    }
+}

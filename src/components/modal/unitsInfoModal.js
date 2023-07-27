@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Drawer from "@mui/material/Drawer";
 import "./unitInfoModal.scss";
 import InfoTab from "../tabs/infoTab";
+import NotesTab from "../tabs/notesTab";
 function UnitsInfoModal({ open, handleClose, item, refreshMain }) {
   const [tabs, setTabs] = useState("Info");
   const handleTabs = (e) => {
@@ -99,7 +100,11 @@ function UnitsInfoModal({ open, handleClose, item, refreshMain }) {
         </section>
       ) : tabs == "Notes" ? (
         <section className="inner-content">
-          <p>This is Notes Tab</p>
+          <NotesTab
+            item={item}
+            handleClose={handleClose}
+            refreshData={refreshData}
+          />
         </section>
       ) : tabs == "Tasks" ? (
         <section className="inner-content">
