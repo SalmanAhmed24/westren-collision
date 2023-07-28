@@ -56,6 +56,7 @@
         }
 }
 .notes-wraper{
+    margin-bottom: 20px;
     .notes{
         border-bottom: 1px solid #cfcfcf;
         margin-bottom: 10px;
@@ -71,5 +72,27 @@
             font-size: 14px;
         }
     
+    }
+}
+.inp{
+    font-family: 'Poppins';
+    font-size: 16px;
+}
+.edit{
+    color: #78A7DA;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-decoration: underline;
+    &:hover{
+        cursor: pointer;
+    }
+}
+.delete{
+    color: red;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-decoration: underline;
+    &:hover{
+        cursor: pointer;
     }
 }

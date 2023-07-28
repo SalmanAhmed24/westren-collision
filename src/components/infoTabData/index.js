@@ -1,3 +1,4 @@
+import moment from "moment";
 import "./infoTabData.scss";
 function InfoTabData({ data }) {
   return (
@@ -16,19 +17,19 @@ function InfoTabData({ data }) {
       </div>
       <div>
         <label>Premise Date</label>
-        <p>{data.premiseDate}</p>
+        <p>{moment(data.premiseDate).format("MM-DD-YYYY")}</p>
       </div>
       <div>
         <label>Approved Date</label>
-        <p>{data.approvedDate}</p>
+        <p>{moment(data.approvedDate).format("MM-DD-YYYY")}</p>
       </div>
       <div>
         <label>Start Date</label>
-        <p>{data.startDate}</p>
+        <p>{moment(data.startDate).format("MM-DD-YYYY")}</p>
       </div>
       <div>
         <label>ECD</label>
-        <p>{data.ecd}</p>
+        <p>{moment(data.ecd).format("MM-DD-YYYY")}</p>
       </div>
       <div>
         <label>Tear Down Assign To</label>
@@ -36,7 +37,7 @@ function InfoTabData({ data }) {
       </div>
       <div>
         <label>Tear Down Complete Date</label>
-        <p>{data.tearDownCompleteDate}</p>
+        <p>{moment(data.tearDownCompleteDate).format("MM-DD-YYYY")}</p>
       </div>
       <div>
         <label>Body Assigned To</label>
@@ -44,7 +45,7 @@ function InfoTabData({ data }) {
       </div>
       <div>
         <label>body Completed Date</label>
-        <p>{data.bodyCompletedDate}</p>
+        <p>{moment(data.bodyCompletedDate).format("MM-DD-YYYY")}</p>
       </div>
       <div>
         <label>Paint Prep Assign To</label>
@@ -52,7 +53,7 @@ function InfoTabData({ data }) {
       </div>
       <div>
         <label>Paint Prep Complete Date</label>
-        <p>{data.paintPrepCompleteDate}</p>
+        <p>{moment(data.paintPrepCompleteDate).format("MM-DD-YYYY")}</p>
       </div>
       <div>
         <label>Paint Assign To</label>
@@ -60,7 +61,7 @@ function InfoTabData({ data }) {
       </div>
       <div>
         <label>Paint Complete Date</label>
-        <p>{data.paintCompleteDate}</p>
+        <p>{moment(data.paintCompleteDate).format("MM-DD-YYYY")}</p>
       </div>
       <div>
         <label>Inspection Assign To</label>
@@ -68,15 +69,15 @@ function InfoTabData({ data }) {
       </div>
       <div>
         <label>Inspection Complete Date</label>
-        <p>{data.inspectionCompleteDate}</p>
+        <p>{moment(data.inspectionCompleteDate).format("MM-DD-YYYY")}</p>
       </div>
       <div>
         <label>Invoice Date</label>
-        <p>{data.invoiceDate}</p>
+        <p>{moment(data.invoiceDate).format("MM-DD-YYYY")}</p>
       </div>
       <div>
         <label>Deliver Date</label>
-        <p>{data.deliverDate}</p>
+        <p>{moment(data.deliverDate).format("MM-DD-YYYY")}</p>
       </div>
     </section>
   );

@@ -79,6 +79,14 @@ function UnitsInfoModal({ open, handleClose, item, refreshMain }) {
               : item.unitYear}
           </p>
         </div>
+        <div className="inner-v">
+          <h3>Unit Notes</h3>
+          <p>
+            {item.notes == null || item.notes.note == ""
+              ? "none"
+              : item.notes.note}
+          </p>
+        </div>
       </section>
       <section className="innerTabs">
         <ul className="innerTabs-ul" onClick={handleTabs}>

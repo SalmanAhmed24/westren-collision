@@ -143,22 +143,13 @@ function AddUnitsModal({ open, handleClose, handleAddUnit, title }) {
       unitModel: unitModel.value,
       unitJobUrgency: unitJob.value,
       unitStatus: unitStatus.map((i) => i.value),
-      notes: [
-        {
-          note,
-          date: moment().format("DD-MM-YYYY"),
-          time: moment().format("HH:MM"),
-          user:
-            user.user && user.user.userInfo
-              ? user.user.userInfo.fullname
-              : "N/A",
-        },
-      ],
-      info: null,
-      tasks: null,
-      work: null,
-      parts: null,
-      $: null,
+      notes: {
+        note,
+        date: moment().format("DD-MM-YYYY"),
+        time: moment().format("HH:MM"),
+        user:
+          user.user && user.user.userInfo ? user.user.userInfo.fullname : "N/A",
+      },
     };
     handleAddUnit(dataObj);
   };
