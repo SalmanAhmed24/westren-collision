@@ -14,6 +14,7 @@ import Employess from "@/components/employees";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import UnitStatus from "@/components/unitStatus";
+import TaskCategory from "@/components/taskCategory";
 function Settings() {
   const [linkVal, setLinkVal] = useState("picklist editor");
   const [innerLink, setInnerLink] = useState(
@@ -87,6 +88,11 @@ function Settings() {
             <p className={innerLink == "Unit Status" ? "activeInnerLink" : ""}>
               Unit Status
             </p>
+            <p
+              className={innerLink == "Task Category" ? "activeInnerLink" : ""}
+            >
+              Task Category
+            </p>
           </div>
         ) : null}
       </section>
@@ -111,6 +117,9 @@ function Settings() {
           ) : null}
           {innerLink == "Employees" ? <Employess title={innerLink} /> : null}
           {innerLink == "Unit Status" ? <UnitStatus title={innerLink} /> : null}
+          {innerLink == "Task Category" ? (
+            <TaskCategory title={innerLink} />
+          ) : null}
         </div>
       </section>
     </main>

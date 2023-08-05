@@ -63,6 +63,8 @@ function UnitTable({ data, refreshUnitData, title }) {
                 ? "vendorType"
                 : title == "Unit Status"
                 ? "unitStatus"
+                : title == "Task Category"
+                ? "taskCategory"
                 : ""
             }/${id}`
           )
@@ -99,6 +101,8 @@ function UnitTable({ data, refreshUnitData, title }) {
             ? "vendorType"
             : title == "Unit Status"
             ? "unitStatus"
+            : title == "Task Category"
+            ? "taskCategory"
             : ""
         }/${currentId}`,
         itemObj
@@ -129,6 +133,7 @@ function UnitTable({ data, refreshUnitData, title }) {
             title == "Unit Type" ||
             title == "Unit Status" ||
             title == "Unit Model" ||
+            title == "Task Category" ||
             title == "Client Type" ? (
               <TableCell className={poppins.className} align="left">
                 Shortcode
@@ -185,6 +190,7 @@ function UnitTable({ data, refreshUnitData, title }) {
                     title == "Unit Type" ||
                     title == "Unit Model" ||
                     title == "Unit Status" ||
+                    title == "Task Category" ||
                     title == "Client Type" ? (
                       <TableCell className={poppins.className}>
                         {item.shortCode}

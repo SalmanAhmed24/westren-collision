@@ -26,8 +26,40 @@ function UnitsInfoModal({ open, handleClose, item, refreshMain }) {
           <p>{item.unitNumber}</p>
         </div>
         <div className="inner-v">
+          <h3>Client</h3>
+          <p>
+            {item.unitClient == null || item.unitClient == ""
+              ? "none"
+              : item.unitClient}
+          </p>
+        </div>
+        <div className="inner-v">
+          <h3>Unit Location</h3>
+          <p>
+            {item.unitLocation == null || item.unitLocation == ""
+              ? "none"
+              : item.unitLocation}
+          </p>
+        </div>
+        <div className="inner-v">
+          <h3>Year</h3>
+          <p>
+            {item.unitYear == null || item.unitYear == ""
+              ? "none"
+              : item.unitYear}
+          </p>
+        </div>
+        <div className="inner-v">
           <h3>Unit Make</h3>
           <p>{item.unitMake}</p>
+        </div>
+        <div className="inner-v">
+          <h3>Unit Model</h3>
+          <p>
+            {item.unitModel == null || item.unitModel == ""
+              ? "none"
+              : item.unitModel}
+          </p>
         </div>
         <div className="inner-v">
           <h3>Unit Type</h3>
@@ -42,41 +74,9 @@ function UnitsInfoModal({ open, handleClose, item, refreshMain }) {
           </p>
         </div>
         <div className="inner-v">
-          <h3>Client</h3>
-          <p>
-            {item.unitClient == null || item.unitClient == ""
-              ? "none"
-              : item.unitClient}
-          </p>
-        </div>
-        <div className="inner-v">
-          <h3>Unit Model</h3>
-          <p>
-            {item.unitModel == null || item.unitModel == ""
-              ? "none"
-              : item.unitModel}
-          </p>
-        </div>
-        <div className="inner-v">
-          <h3>Unit Location</h3>
-          <p>
-            {item.unitLocation == null || item.unitLocation == ""
-              ? "none"
-              : item.unitLocation}
-          </p>
-        </div>
-        <div className="inner-v">
           <h3>Branch</h3>
           <p>
             {item.branch == null || item.branch == "" ? "none" : item.branch}
-          </p>
-        </div>
-        <div className="inner-v">
-          <h3>Year</h3>
-          <p>
-            {item.unitYear == null || item.unitYear == ""
-              ? "none"
-              : item.unitYear}
           </p>
         </div>
         <div className="inner-v">

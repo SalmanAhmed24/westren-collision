@@ -36,6 +36,7 @@ function AddUnitModal({ open, handleClose, handleAddUnit, title }) {
           title == "Unit Type" ||
           title == "Unit Model" ||
           title == "Unit Status" ||
+          title == "Task Category" ||
           title == "Client Type" ? (
             <>
               <label className={poppins.className}>Shortcode</label>
@@ -51,6 +52,7 @@ function AddUnitModal({ open, handleClose, handleAddUnit, title }) {
           title == "Unit Type" ||
           title == "Unit Model" ||
           title == "Unit Status" ||
+          title == "Task Category" ||
           title == "Client Type" ? (
             <button
               className={poppins.className}
