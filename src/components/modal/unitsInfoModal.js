@@ -3,6 +3,7 @@ import Drawer from "@mui/material/Drawer";
 import "./unitInfoModal.scss";
 import InfoTab from "../tabs/infoTab";
 import NotesTab from "../tabs/notesTab";
+import TasksTab from "../tabs/tasksTab";
 function UnitsInfoModal({ open, handleClose, item, refreshMain }) {
   const [tabs, setTabs] = useState("Info");
   const handleTabs = (e) => {
@@ -116,7 +117,11 @@ function UnitsInfoModal({ open, handleClose, item, refreshMain }) {
         </section>
       ) : tabs == "Tasks" ? (
         <section className="inner-content">
-          <p>This is Tasks Tab</p>
+          <TasksTab
+            item={item}
+            handleClose={handleClose}
+            refreshData={refreshData}
+          />
         </section>
       ) : tabs == "Work" ? (
         <section className="inner-content">

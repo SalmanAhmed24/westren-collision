@@ -5,6 +5,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    border-bottom: 1px solid #cfcfcf;
+    padding-bottom: 10px;
         .input-wrap{
             width: auto;
             margin:10px;
@@ -14,6 +16,9 @@
                     font-weight: bold;
                     margin-bottom: 10px;
                 }
+        }
+        .opt{
+            width: 200px;
         }
 }
 .add-btn-wrap{
@@ -95,4 +100,24 @@
     &:hover{
         cursor: pointer;
     }
+}
+.tab-heading{
+    font-size:32px;
+    margin-top: 10px;
+}
+.custom-date{
+    padding: 10px;
+    font-size: 16px;
+}
+.cus-time{
+    .MuiInputBase-root{
+        padding: 10px;
+            input{
+                padding: 0px;
+            }
+    }
+}
+.cus-text-inp{
+    padding: 10px;
+    font-size: 16px;
 }
