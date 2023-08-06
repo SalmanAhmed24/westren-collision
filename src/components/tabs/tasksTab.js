@@ -286,11 +286,11 @@ function TasksTab({ item, handleClose, refreshData }) {
               <div key={`${i.date}${ind}`} className="notes-wraper">
                 <div className="inner-notes-wrap">
                   <label>Date</label>
-                  <p>{i.date}</p>
+                  <p>{moment(i.date).format("MM-DD-YYYY")}</p>
                 </div>
                 <div className="inner-notes-wrap">
                   <label>Time</label>
-                  <p>{moment(i.time, ["HH:mm"]).format("hh:mm A")}</p>
+                  <p>{moment(i.time, ["HH:mm"]).format("hh:mm a")}</p>
                 </div>
                 <div className="inner-notes-wrap">
                   <label>Task Category</label>
@@ -298,16 +298,13 @@ function TasksTab({ item, handleClose, refreshData }) {
                 </div>
                 <div className="inner-notes-wrap">
                   <label>Due Date</label>
-                  <p>{i.dueDate}</p>
+                  <p>{moment(i.dueDate).format("MM-DD-YYYY")}</p>
                 </div>
                 <div className="inner-notes-wrap">
                   <label>Assigned To</label>
                   <p>{i.assignedTo}</p>
                 </div>
-                <div className="inner-notes-wrap">
-                  <label>Assigned To</label>
-                  <p>{i.assignedTo}</p>
-                </div>
+
                 <div className="inner-notes-wrap">
                   <label>Title</label>
                   <p>{i.title}</p>
