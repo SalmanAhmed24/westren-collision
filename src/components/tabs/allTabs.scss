@@ -62,6 +62,24 @@
 }
 .notes-wraper{
     margin-bottom: 20px;
+    background-color: #efefef;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    .inner-notes-wrap{
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+            label{
+                font-weight: bold;
+            }
+    }
+    .action-wrap{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
     .notes{
         border-bottom: 1px solid #cfcfcf;
         margin-bottom: 10px;

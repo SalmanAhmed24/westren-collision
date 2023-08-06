@@ -27,7 +27,7 @@ function NotesTab({ item, handleClose, refreshData }) {
         user.user && user.user.userInfo ? user.user.userInfo.fullname : "N/A",
     };
     axios
-      .patch(`${apiRouth.devPath}/api/units/addIndNotes/${item.id}`, notesData)
+      .patch(`${apiRouth.prodPath}/api/units/addIndNotes/${item.id}`, notesData)
       .then((res) => {
         console.log(res);
         handleClose();
@@ -45,7 +45,10 @@ function NotesTab({ item, handleClose, refreshData }) {
       id: noteId,
     };
     axios
-      .patch(`${apiRouth.devPath}/api/units/editIndNotes/${item.id}`, notesData)
+      .patch(
+        `${apiRouth.prodPath}/api/units/editIndNotes/${item.id}`,
+        notesData
+      )
       .then((res) => {
         console.log(res);
         handleClose();
@@ -55,7 +58,7 @@ function NotesTab({ item, handleClose, refreshData }) {
   };
   const deleteNote = (i) => {
     axios
-      .delete(`${apiRouth.devPath}/api/units/deleteNotes/${item.id}&&${i._id}`)
+      .delete(`${apiRouth.prodPath}/api/units/deleteNotes/${item.id}&&${i._id}`)
       .then((res) => {
         handleClose();
         refreshData();

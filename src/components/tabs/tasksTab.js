@@ -11,6 +11,7 @@ import moment from "moment";
 import axios from "axios";
 import apiRouth from "@/utils/routes";
 import Select from "react-select";
+import Swal from "sweetalert2";
 function TasksTab({ item, handleClose, refreshData }) {
   const [showAdd, setShowAdd] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -23,6 +24,7 @@ function TasksTab({ item, handleClose, refreshData }) {
   const [taskDesc, setTaskDesc] = useState("");
   const [taskCatOpt, setTaskCatOpt] = useState("");
   const [assignToOpt, setAssignToOpt] = useState("");
+  const [taskId, setTaskId] = useState("");
   useEffect(() => {
     axios
       .get(`${apiRouth.prodPath}/api/taskCategory`)
@@ -53,17 +55,83 @@ function TasksTab({ item, handleClose, refreshData }) {
     setShowAdd(!showAdd);
   };
   const editHandler = (item) => {
-    setNote(item.note);
-    setNoteId(item._id);
+    setTime(dayjs(item.time));
+    setDate(new Date(item.date));
+    setTaskCat({ label: item.taskCategory, value: item.taskCategory });
+    setDueDate(new Date(item.dueDate));
+    setAssignTo({ label: item.assignedTo, value: item.assignedTo });
+    setTitle(item.title);
+    setTaskDesc(item.taskDescription);
+    console.log("this is id", item._id);
+    setTaskId(item._id);
     setShowEdit(!showEdit);
   };
   const handleTime = (time) => {
     console.log("this is time", time);
+    setTime(time);
   };
-  const addTasks = () => {};
-  const saveTasks = () => {};
-  const deleteNote = (i) => {};
-  console.log("this is options", taskCatOpt);
+  const addTasks = () => {
+    const objData = {
+      date,
+      time: time,
+      taskCategory: taskCat.value,
+      dueDate,
+      assignedTo: assignedTo.value,
+      title,
+      taskDescription: taskDesc,
+    };
+    axios
+      .patch(`${apiRouth.prodPath}/api/units/addTasks/${item.id}`, objData)
+      .then((res) => {
+        handleClose();
+        refreshData();
+      })
+      .catch((err) => console.log(err));
+  };
+  const saveTasks = () => {
+    const objData = {
+      date,
+      time: time,
+      taskCategory: taskCat.value,
+      dueDate,
+      assignedTo: assignedTo.value,
+      title,
+      taskDescription: taskDesc,
+      id: taskId,
+    };
+
+    axios
+      .patch(`${apiRouth.prodPath}/api/units/editTasks/${item.id}`, objData)
+      .then((res) => {
+        handleClose();
+        refreshData();
+      })
+      .catch((err) => console.log(err));
+  };
+  const deleteNote = (id) => {
+    Swal.fire({
+      title: "Delete Task",
+      text: "Are you sure you want to delete the Task?",
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(
+            `${apiRouth.prodPath}/api/units/deleteTasks/${item.id}&&${id}`
+          )
+          .then((res) => {
+            handleClose();
+            refreshData();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
+  };
   return (
     <section>
       <div className="add-btn-wrap">
@@ -144,7 +212,66 @@ function TasksTab({ item, handleClose, refreshData }) {
           <div className="tab-input-wrap">
             <div className="input-wrap">
               <label>Date</label>
-              <DatePicker selected={date} onChange={(d) => setDate(d)} />
+              <DatePicker
+                className="custom-date"
+                selected={date}
+                onChange={(d) => setDate(d)}
+              />
+            </div>
+            <div className="input-wrap">
+              <label>Time</label>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <TimePicker
+                  className="cus-time"
+                  value={time}
+                  onChange={handleTime}
+                />
+              </LocalizationProvider>
+            </div>
+            <div className="input-wrap opt">
+              <label>Task Category</label>
+              <Select
+                className="task-cat-cus"
+                options={taskCatOpt}
+                onChange={(value) => setTaskCat(value)}
+                value={taskCat}
+              />
+            </div>
+            <div className="input-wrap">
+              <label>Due Date</label>
+              <DatePicker
+                className="custom-date"
+                selected={dueDate}
+                onChange={(d) => setDueDate(d)}
+              />
+            </div>
+            <div className="input-wrap opt">
+              <label>Assigned To</label>
+              <Select
+                className="task-cat-cus"
+                options={assignToOpt}
+                onChange={(value) => setAssignTo(value)}
+                value={assignedTo}
+              />
+            </div>
+            <div className="input-wrap opt">
+              <label>Title</label>
+              <input
+                type="text"
+                className="cus-text-inp"
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+              />
+            </div>
+            <div className="input-wrap opt">
+              <label>Description</label>
+              <textarea
+                rows={5}
+                cols={5}
+                className="cus-text-inp"
+                onChange={(e) => setTaskDesc(e.target.value)}
+                value={taskDesc}
+              ></textarea>
             </div>
             <div className="btn-submit-wrap">
               <button onClick={saveTasks}>Edit</button>
@@ -156,15 +283,44 @@ function TasksTab({ item, handleClose, refreshData }) {
         {item.tasks.length > 0 ? (
           item.tasks.map((i, ind) => {
             return (
-              <div key={`${i.user}${ind}`} className="notes-wraper">
-                <p className="notes">{i.note}</p>
-                <div className="user">
-                  <p>/{i.date}</p>
-                  <p>/{moment(i.time, ["HH:mm"]).format("hh:mm A")}</p>
+              <div key={`${i.date}${ind}`} className="notes-wraper">
+                <div className="inner-notes-wrap">
+                  <label>Date</label>
+                  <p>{i.date}</p>
+                </div>
+                <div className="inner-notes-wrap">
+                  <label>Time</label>
+                  <p>{moment(i.time, ["HH:mm"]).format("hh:mm A")}</p>
+                </div>
+                <div className="inner-notes-wrap">
+                  <label>Task Category</label>
+                  <p>{i.taskCategory}</p>
+                </div>
+                <div className="inner-notes-wrap">
+                  <label>Due Date</label>
+                  <p>{i.dueDate}</p>
+                </div>
+                <div className="inner-notes-wrap">
+                  <label>Assigned To</label>
+                  <p>{i.assignedTo}</p>
+                </div>
+                <div className="inner-notes-wrap">
+                  <label>Assigned To</label>
+                  <p>{i.assignedTo}</p>
+                </div>
+                <div className="inner-notes-wrap">
+                  <label>Title</label>
+                  <p>{i.title}</p>
+                </div>
+                <div className="inner-notes-wrap">
+                  <label>Task Description</label>
+                  <p>{i.taskDescription}</p>
+                </div>
+                <div className="action-wrap">
                   <p className="edit" onClick={() => editHandler(i)}>
                     Edit
                   </p>
-                  <p className="delete" onClick={() => deleteNote(i)}>
+                  <p className="delete" onClick={() => deleteNote(i._id)}>
                     Delete
                   </p>
                 </div>
