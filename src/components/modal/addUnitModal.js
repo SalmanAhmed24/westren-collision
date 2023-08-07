@@ -2,15 +2,19 @@ import Modal from "@mui/material/Modal";
 import Drawer from "@mui/material/Drawer";
 import React, { useState } from "react";
 import "./addUnitModal.scss";
-function AddUnitModal({ open, handleClose, handleAddUnit }) {
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+});
+function AddUnitModal({ open, handleClose, handleAddUnit, title }) {
   const [name, setName] = useState("");
-  const [value, setValue] = useState("");
+  const [shortCode, setShortCode] = useState("");
   const handleName = (e) => {
     setName(e.target.value);
   };
-  const handleValue = (e) => {
-    setValue(e.target.value);
-  };
+  const handleShortCode = (e) => setShortCode(e.target.value);
   return (
     <div>
       <Drawer
@@ -21,13 +25,49 @@ function AddUnitModal({ open, handleClose, handleAddUnit }) {
         aria-describedby="modal-modal-description"
       >
         <div className="drawer-wrapper">
-          <label>Name</label>
-          <input type="text" onChange={handleName} className="inp-cus" />
-          <label>Value</label>
-          <input type="number" onChange={handleValue} className="inp-cus" />
-          <button onClick={() => handleAddUnit({ name, value })}>
-            Add Unit Make
-          </button>
+          <label className={poppins.className}>Name</label>
+          <input
+            type="text"
+            onChange={handleName}
+            className={poppins.className}
+          />
+          {title == "Branch" ||
+          title == "Unit Make" ||
+          title == "Unit Type" ||
+          title == "Unit Model" ||
+          title == "Unit Status" ||
+          title == "Task Category" ||
+          title == "Client Type" ? (
+            <>
+              <label className={poppins.className}>Shortcode</label>
+              <input
+                type="text"
+                onChange={handleShortCode}
+                className={poppins.className}
+              />
+            </>
+          ) : null}
+          {title == "Branch" ||
+          title == "Unit Make" ||
+          title == "Unit Type" ||
+          title == "Unit Model" ||
+          title == "Unit Status" ||
+          title == "Task Category" ||
+          title == "Client Type" ? (
+            <button
+              className={poppins.className}
+              onClick={() => handleAddUnit({ name, shortCode })}
+            >
+              Add {title}
+            </button>
+          ) : (
+            <button
+              className={poppins.className}
+              onClick={() => handleAddUnit({ name })}
+            >
+              Add {title}
+            </button>
+          )}
         </div>
       </Drawer>
     </div>

@@ -1,19 +1,36 @@
 "use client";
 import "./topNavbar.scss";
+import { LOGIN_INFO } from "../../store/action/user-action";
 import { useRouter, usePathname } from "next/navigation";
+import { useSelector, useDispatch } from "react-redux";
 function TopNavbar() {
   const router = useRouter();
   const pathname = usePathname();
-  console.log("pathname", pathname);
-  return (
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.userReducer);
+  const handleLogout = () => {
+    dispatch(LOGIN_INFO(null));
+    router.push("./login");
+  };
+  return userInfo.user == null ? null : (
     <nav className="top-navbar">
       <ul className="links-wrap">
-        <li>Link 1</li>
-        <li>Link 2</li>
-        <li>Link 3</li>
-        <li>Link 4</li>
-        <li>Link 5</li>
-        <li>Link 6</li>
+        <li>Dashboard</li>
+        <li
+          className={pathname == "/list" ? "activeLink" : "regularLink"}
+          onClick={() => router.push("/list")}
+        >
+          List
+        </li>
+        <li>Purchasing</li>
+        <li
+          className={pathname == "/units" ? "activeLink" : "regularLink"}
+          onClick={() => router.push("/units")}
+        >
+          Units
+        </li>
+        <li>Finance</li>
+        <li>Reports</li>
         <li>Link 7</li>
         <li
           className={pathname == "/settings" ? "activeLink" : "regularLink"}
@@ -22,6 +39,7 @@ function TopNavbar() {
           Settings
         </li>
       </ul>
+      <button onClick={handleLogout}>Logout</button>
     </nav>
   );
 }
