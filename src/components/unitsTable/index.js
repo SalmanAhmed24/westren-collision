@@ -85,7 +85,7 @@ function UnitsTable({ data, refresh, title }) {
         <TableHead>
           <TableRow>
             <TableCell className={poppins.className} align="left">
-              Branch
+              Unit#
             </TableCell>
             <TableCell className={poppins.className} align="left">
               Unit Client
@@ -94,13 +94,16 @@ function UnitsTable({ data, refresh, title }) {
               Unit Location
             </TableCell>
             <TableCell className={poppins.className} align="left">
+              Unit Year
+            </TableCell>
+            <TableCell className={poppins.className} align="left">
               Unit Make
             </TableCell>
             <TableCell className={poppins.className} align="left">
               Unit Model
             </TableCell>
             <TableCell className={poppins.className} align="left">
-              Unit Year
+              Branch
             </TableCell>
             <TableCell className={poppins.className} align="left">
               Actions
@@ -116,7 +119,7 @@ function UnitsTable({ data, refresh, title }) {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell className={poppins.className}>
-                  {item.branch}
+                  {item.unitNumber}
                 </TableCell>
                 <TableCell className={poppins.className}>
                   {item.unitClient}
@@ -125,13 +128,16 @@ function UnitsTable({ data, refresh, title }) {
                   {item.unitLocation}
                 </TableCell>
                 <TableCell className={poppins.className}>
+                  {item.unitYear}
+                </TableCell>
+                <TableCell className={poppins.className}>
                   {item.unitMake}
                 </TableCell>
                 <TableCell className={poppins.className}>
                   {item.unitModel}
                 </TableCell>
                 <TableCell className={poppins.className}>
-                  {item.unitYear}
+                  {item.branch}
                 </TableCell>
                 <TableCell className={poppins.className}>
                   <Image
